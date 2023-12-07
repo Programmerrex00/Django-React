@@ -1,0 +1,213 @@
+python --version   para ver la version de python que tengo
+node --version para ver la version de node que tengo
+
+ahora vamos a crear un entorno virtual en python para estar descargado paquetes
+
+vamos a descargar un modulo para utilizar entornos virtuales en python
+pip install virtualenv
+
+ahora vamos a ejecutar el modulo para crear el proyecto:
+python -m venv nombredelproyecto(venv)
+
+vamos a activarlo con f1 - escribitmos: python interprete , seleccionamos la que tiene la estrella
+
+cerramos y volvemos a abrir el cmd (en VSC)
+
+vamos a instalar Django
+escribimos pip instal django
+
+escribimos django-admin para ver los comando que tenemos
+
+vamos a nombrar el proyecto:
+django-admin startproject nombre_del_proyecto .
+
+podemos ejecutarlo con python manage.py runserver
+
+ahora vamos a setting.py
+
+en la parte de INSTALLED_APPS
+
+vamos a iniciar la app con el comando
+
+python manage.py startapp nombre_app
+
+en la parte de INSTALLED_APPS añadimos 'tasks'
+
+vamos a la consola y escribimos el comando python manage.py migrate
+lo que hace es crear todas la tablas para que pueda funcionar el proyecto
+
+python manage.py runserver
+
+vamos ahora a descargar el modulo django rest framework y vamos a la documentacion
+
+ahora instalamos el modulo con el comando pip install djangorestframework
+
+instalamos ahora un modulo para simplificar la comunicacion de nuesro frond-end con nuestro back-end
+pip install django-cors-headers
+
+vamos nuevamente al setting.py
+
+nuevamente en INSTALLED_APPS colocamos 'corsheaders' 'rest_framework'
+
+ahora en la session MIDDLEWARE añadimos esto:  "corsheaders.middleware.CorsMiddleware" antes de esto:  "django.middleware.common.CommonMiddleware"
+
+ahora en la ultima parte del setting.py añadimos: 
+CORS_ALLOWED_ORIGINS = []
+
+y podemos volver a ejecutar con python manage.py runserver
+
+comando despues de crear la tabla en models.py: python manage.py makemigrations tasks
+
+nos creara una carpeta donde estara la tabla que añadimos osea el codigo python
+ejecutamos el comando python manage.py migrate tasks(nombre de la app) esto lo hacemos para ejecutar eso
+
+luego de eso lo pdemos probar con python manage.py runserver
+
+y podemo ver el panel administrador con localhost:8000/admin
+
+ahora vamos a crear un usuario para utilizar 
+
+vamos a la consola y escribimos python manage.py createsuperuser
+
+ponemos nombre de user: Rex
+nos pedira un correo: maicolcubidespe@gmail.com
+ahora una password: maicol015*
+
+y volvemos a probar de nuevo
+
+ahora como vemos tenemos que añadir nuestro proyecto al panel de administrador
+
+vamos a la carpeta admin.py
+
+from django.contrib import admin
+from .models import Task
+
+# Register your models here.
+admin.site.register(Task)
+
+ahora si vemos que el proyecto con la tabla Task ha sido añadido,
+pero si vemos cuandoo guardamos alguna tarea no nos da mucha informacion de una tarea nueva cuando la guardo
+vamos al models.py
+
+y añadimos esto para poder ver el titulo de la tarea:
+
+ def __str__(self):
+        return self.title
+
+con eso ya tendriamos el modelo de tareas en python
+
+pip install coreapi
+
+luego nos dirigimos a nuestro archivo settings.py y agregamos en INSTALLED_APPS esto encima de tasks:
+
+cuando nos salga este error:
+
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\MAICOL\AppData\Local\Programs\Python\Python312\Lib\threading.py", line 1052, in _bootstrap_inner
+    self.run()
+  File "C:\Users\MAICOL\AppData\Local\Programs\Python\Python312\Lib\threading.py", line 989, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\core\management\commands\runserver.py", line 125, in inner_run
+    autoreload.raise_last_exception()
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\utils\autoreload.py", line 87, in raise_last_exception        
+    raise _exception[1]
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\core\management\__init__.py", line 394, in execute
+    autoreload.check_errors(django.setup)()
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\apps\registry.py", line 91, in populate
+    app_config = AppConfig.create(entry)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\django\apps\config.py", line 193, in create
+    import_module(entry)
+  File "C:\Users\MAICOL\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1381, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1354, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1325, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 929, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 994, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\coreapi\__init__.py", line 2, in <module>
+    from coreapi import auth, codecs, exceptions, transports, utils
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\coreapi\auth.py", line 1, in <module>
+    from coreapi.utils import domain_matches
+  File "C:\Users\MAICOL\Desktop\djang-crud-react\venv\Lib\site-packages\coreapi\utils.py", line 5, in <module>
+    import pkg_resources
+ModuleNotFoundError: No module named 'pkg_resources'
+
+ejecutamos el comando: pip install setuptools
+
+
+ponemos ahora este modulo en settings.py modulo opcional:
+
+REST_FRAMEWORK = {
+    ...: ...,
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}
+
+
+ahora implementamos react en nuestro proyecto para el frond-end vamos a utilizar vite.js
+en otra terminal escribimos npm create vite
+
+luego escribimos npm install
+
+ahora ejecutamos el comando npm run dev todo lo hacemos dentro de la carpeta client que creamos para el frond-end
+
+ahora en la consola del cliente vamos a instalar algunos modulos como:
+npm i react-router-dom que es para manejar multiples vistas en el frond
+react-hot-toast que es para cuando hagamos alguna accion tengamos algunos mensajes
+axios que es un modulo para hacer peticiones
+react-hook-form que nos sirve para validar si un usuario envia un datos vacion, etc...
+
+TODOS ESTOS COMANDO LOS PODEMOS EJECUTAR EN UNA SOLA LINEA
+
+y luego npm run dev
+
+
+
+
+
+
+
+
+PARA INSTALAR TAILWIND CSS LO HACEMOS CON ESTOS COMANDOS: 
+
+ejecutamos estos comando en la carpeta donde esta el fronend osea el cliente
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+
+añadimos esto al archivo tailwind.config.js :
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+
+y añadimos esto en index.css:
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
